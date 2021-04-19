@@ -13,6 +13,15 @@ Destination     Gateway         Genmask         Flags Metric Ref     Use Iface
 ```
 
 `ip`: list network interfaces and related information such as IP, MAC etc.
+`nslookup`: retrieve DNS information from the configured nameserver
+
+## DNS
+
+The old way to edit the DNS resolving was to manually edit `/etc/resolv.conf`.
+
+However, this file is nowadays controlled by `systemd-resolved`. To view nameservers, type `systemd-resolve --status` to view the uplink nameservers.
+
+If you want to configure the nameservers, use `netplan` instead.
 
 ## Netplan
 
