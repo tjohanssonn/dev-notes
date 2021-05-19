@@ -29,13 +29,22 @@ Shorthand to push the current branch to the tracked branch on origin:
 git push
 ```
 
-If the remote branch does not exist yet, the `-u`/`--set-upstream` option must be used:
+If the remote branch does not exist yet, the above command will give an error message:
+
+```text
+fatal: The current branch feature-branch has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin feature-branch
+```
+
+Solution is to add the `-u`/`--set-upstream` option:
 
 ```bash
 git push -u origin feature-branch
 ```
 
-This pushes your local branch to the remote, and adds the remote as the tracked branch.
+This pushes the local branch to the remote, and adds the remote as the tracked branch. Forgetting the `-u` will push the local branch to the remote, but it will _not_ track it. So the next time I push, the same error message appears. Solution? Push with `-u` option, dummy.
 
 If I want to name my remote branch the same as my local branch, a shorthand is:
 
