@@ -16,7 +16,7 @@ In the first code block, the fact is set on the current host.
 
 ```yaml
 - name: Set fact on current running host
-    local_action:
+  local_action:
     module: set_fact
     my_var: "1"
 # Or alternate syntax:
