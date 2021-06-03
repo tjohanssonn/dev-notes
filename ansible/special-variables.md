@@ -12,6 +12,18 @@ There's lots of special variables that can be accessed during tasks. Unfortunate
 
 `inventory_hostname` contains the name of the current host.
 
+## hostvars
+
+`hostvars` contains all facts/variables on all hosts. It is structured as `hostvars["hostname"]["my-variable"]`. If the play has gathered facts on all hosts, these are accessible via `hostvars["hostname"]["ansible_facts"]`.
+
+A typical construct is for example to loop through hosts not targeted by the current play, e.g.
+
+```yaml
+- debug:
+    msg: "{{ hostvars[item]["an-interesting-variable"] }}"
+  loop: "{{ groups["another-group"] }}
+```
+
 ## Resources
 
 - <https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html>
