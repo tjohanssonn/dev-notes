@@ -63,3 +63,53 @@ git stash
 git checkout other-branch
 git stash pop
 ```
+
+## Remote
+
+### Listing remotes
+
+To list all remotes that have been added to the current local repo:
+
+```bash
+$ git remote -v
+origin  https://github.com/tjohanssonn/dev-notes.git (fetch)
+origin  https://github.com/tjohanssonn/dev-notes.git (push)
+```
+
+### Adding a remote
+
+To add a new remote repository named `origin`:
+
+```bash
+git remote add origin https://github.com/user/repo.git
+```
+
+### Updating remote url
+
+Sometimes you wanna rename a project. This breaks the local repos connection to the remote as the URL changes.
+
+To update `origin` to the new remote URL:
+
+```bash
+git remote set-url origin https://github.com/user/new-repo.git
+```
+
+## "Scratching my head" warnings/errors
+
+### Warning when deleting a local branch
+
+```text
+git branch -d old_branch
+warning: deleting branch 'old_branch' that has been merged to 'refs/remotes/origin/old_branch', but not yet merged to HEAD.
+```
+
+Huh?
+
+In plain text:  
+This means that the local branch `old_branch` _is_ up to date with its remote `origin/old_branch`, but it _is not_ merged to the current local branch (i.e. `HEAD`, which is probably `master`).
+
+This may be the case, but probably this warning pops up after a merge/rebase has been made in the GUI in Gitlab or Github.
+
+Such an action may either add commits or change the SHA of existing commits, causing `git` to view the original SHA's in the local `old_branch` as different from the ones in `HEAD` (who received the changed SHA's during `git pull`).
+
+[See this Stackoverflow for more info](https://stackoverflow.com/questions/12147360/git-branch-d-gives-warning/12147447).
