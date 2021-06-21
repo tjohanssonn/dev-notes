@@ -94,6 +94,19 @@ To update `origin` to the new remote URL:
 git remote set-url origin https://github.com/user/new-repo.git
 ```
 
+## Change author of last commit
+
+I often forget to set the "....@users.noreply.github.com" on the few repos I push to my personal Github. If a commit has been made with an incorrect email I can't push, 'cause Github complains that I will expose my private email.
+
+To change author/email on _the last commit_, there's an easy fix:
+
+```bash
+# Change email to the correct one
+git config user.email ".....@users.noreply.github.com"
+# Amend the last commit
+git commit --amend --reset-author --no-edit
+```
+
 ## "Scratching my head" warnings/errors
 
 ### Warning when deleting a local branch
