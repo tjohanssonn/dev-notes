@@ -1,6 +1,17 @@
-# Git
+# Git <!-- omit in toc -->
 
 A little cheat-sheet of the most common operations I do when working with Git.
+
+- [Branch and checkout](#branch-and-checkout)
+- [Push](#push)
+- [Moving uncommitted work to another branch](#moving-uncommitted-work-to-another-branch)
+- [Remote](#remote)
+  - [Listing remotes](#listing-remotes)
+  - [Adding a remote](#adding-a-remote)
+  - [Updating remote url](#updating-remote-url)
+- [Change author of last commit](#change-author-of-last-commit)
+- ["Scratching my head" warnings/errors](#scratching-my-head-warningserrors)
+  - [Warning when deleting a local branch](#warning-when-deleting-a-local-branch)
 
 ## Branch and checkout
 
