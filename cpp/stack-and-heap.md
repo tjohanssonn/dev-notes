@@ -1,6 +1,6 @@
 # Stack and heap
 
-Memory can be split in two variants - stack and heap.
+Application memory can be split in two variants - stack and heap. Both are stored in RAM.
 
 **TL;DR: If you can create an object on the stack, do it.**
 
@@ -48,3 +48,40 @@ There's a few reasons why you would want to allocate objects on the heap:
 - Stack memory is not large enough, due to:
   - Class is too large to allocate on the stack
   - Too many instances of the class may be created to fit on the stack
+
+## Side track - scoped pointer
+
+Unique pointer in C++ is what is known as a _scoped pointer_. At the very basic level it uses the scope characteristics of heap and stack to automatically clean up the memory when the pointer goes out of scope.
+
+At its core it can be illustrated like this:
+
+```cpp
+class ScopedPtr
+{
+private:
+    Entity* m_Ptr;
+public:
+    ScopedPtr(Entity* ptr)
+        : m_Ptr(ptr)
+    {
+    }
+
+    ~ScopedPtr()
+    {
+        delete m_Ptr;
+    }
+}
+
+int main()
+{
+    {
+        // Create e, which is allocated on the stack and use it as a wrapper
+        // around the pointer to heap-allocated memory.
+        ScopedPtr e = new Entity();
+        // Can also be written as (equivalent):
+        // ScopedPtr e(new Entity());
+    }
+    // Here, e is destroyed since it goes out of scope.
+    // Allocated heap memory is cleaned in its destructor.
+}
+```
